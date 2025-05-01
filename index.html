@@ -70,7 +70,6 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    // Beispielhafte Benachrichtigung
     function showNotification(message) {
       const note = document.getElementById("notification");
       note.textContent = message;
@@ -78,7 +77,6 @@
       setTimeout(() => note.style.display = "none", 5000);
     }
 
-    // Klick zum Testen
     document.body.addEventListener("click", () => showNotification("HA-Ereignis: Bewegung im Flur"));
   </script>
 </body>
