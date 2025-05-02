@@ -2,84 +2,50 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Smart Info Dashboard</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #000;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .clock {
-      font-size: 64px;
-      margin-top: 20px;
-    }
-    .weather {
-      display: flex;
-      gap: 40px;
-      margin: 20px;
-      font-size: 24px;
-    }
-    .calendar {
-      margin: 20px;
-      width: 95%;
-      height: 400px;
-      max-width: 1000px;
-    }
-    .calendar iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      border-radius: 10px;
-    }
-    .notification {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: rgba(255, 0, 0, 0.8);
-      padding: 15px 20px;
-      font-size: 20px;
-      border-radius: 10px;
-      display: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Smart Info Dashboard</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .clock {
+            font-size: 80px;
+            margin-top: 20px;
+        }
+        .weather {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        iframe {
+            border: none;
+        }
+    </style>
 </head>
 <body>
-  <div class="clock" id="clock">00:00</div>
+    <div class="clock" id="clock">00:00</div>
+    <div class="weather" id="weather">
+        Kamen: 17°C, sonnig  Dortmund: 18°C, leicht bewölkt
+    </div>
 
-  <div class="weather">
-    <div id="weather-kamen">Kamen: 17°C, sonnig</div>
-    <div id="weather-dortmund">Dortmund: 18°C, leicht bewölkt</div>
-  </div>
+    <iframe 
+      src="https://calendar.google.com/calendar/embed?src=466js1j2sl41h1fb35dt6m9k9mb8bmln%40import.calendar.google.com&mode=DAY&ctz=Europe%2FBerlin" 
+      style="width: 100%; height: 600px;">
+    </iframe>
 
-  <div class="calendar">
-    <iframe src="https://calendar.google.com/calendar/embed?src=466js1j2sl41h1fb35dt6m9k9mb8bmln%40import.calendar.google.com&ctz=Europe%2FBerlin" frameborder="0" scrolling="no"></iframe>
-  </div>
-
-  <div class="notification" id="notification">Bewegung erkannt!</div>
-
-  <script>
-    function updateClock() {
-      const now = new Date();
-      const h = String(now.getHours()).padStart(2, '0');
-      const m = String(now.getMinutes()).padStart(2, '0');
-      document.getElementById("clock").textContent = `${h}:${m}`;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    function showNotification(message) {
-      const note = document.getElementById("notification");
-      note.textContent = message;
-      note.style.display = "block";
-      setTimeout(() => note.style.display = "none", 5000);
-    }
-
-    document.body.addEventListener("click", () => showNotification("HA-Ereignis: Bewegung im Flur"));
-  </script>
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
 </body>
 </html>
