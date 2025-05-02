@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Info Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .clock {
+            font-size: 80px;
+            margin-top: 10px;
+        }
+        .weather {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        iframe {
+            border: none;
+            width: 95vw;
+            height: 80vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock" id="clock">--:--</div>
+    <div class="weather">Kamen: 17°C, sonnig  Dortmund: 18°C, leicht bewölkt</div>
+    <iframe src="https://calendar.google.com/calendar/embed?src=466js1j2sl41h1fb35dt6m9k9mb8bmln%40import.calendar.google.com&mode=day&bgcolor=%23000000&color=%23039BE5&ctz=Europe%2FBerlin&showTitle=0&showPrint=0&showTabs=0&showDate=0&showCalendars=0&showTz=0">
+    </iframe>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${h}:${m}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>
